@@ -6,13 +6,13 @@
 #include <cmath>
 
 /*  Makes use of the fact that the number of factors is the product of the numbers of consecutive equal primes + 1, i.e.
-    given a number x part of the set of integers (*only what's relevant),  then the number x can be written as a product of prime factors
-    such that x = p1^a * p2^b * p3^c. Given the number 28 in this example, the prime factors are 2, 2, 7. Thus 28 can be written as the product
-    2 * 2 * 7 = 28, the number of divisors in this case, is the number of consecutive prime factors + 1, thus given a function f(x) that returns
-    the number of divisors of x, f(28) -> ( 2 + 1 ) ( 1 + 1 ) = 6, the same principle follows for the triangle numbers, the formula for the divergent series
-    n( n + 1 ) / 2 is also used.*/
+given a number x part of the set of integers (*only what's relevant),  then the number x can be written as a product of prime factors
+such that x = p1^a * p2^b * p3^c. Given the number 28 in this example, the prime factors are 2, 2, 7. Thus 28 can be written as the product
+2 * 2 * 7 = 28, the number of divisors in this case, is the number of consecutive prime factors + 1, thus given a function f(x) that returns
+the number of divisors of x, f(28) -> ( 2 + 1 ) ( 1 + 1 ) = 6, the same principle follows for the triangle numbers, the formula for the divergent series
+n( n + 1 ) / 2 is also used.*/
 
-uint32_t pSieveArray[8];
+uint32_t pSieveArray[20];
 uint32_t nPrimeFactors[500];
 uint32_t nPrimeFactorsSize = 0;
 
@@ -42,7 +42,7 @@ uint32_t GetFactorSum(uint32_t nNumber)
 {
     register uint32_t nCounter = 1; // First number is always equal
     register uint32_t nRetVal = 1;
-    memset(nPrimeFactors, 0, 500);
+    memset(nPrimeFactors, 0, 499);
     nPrimeFactorsSize = 0;
     for (uint32_t i = 2; i <= nNumber;)
     {
@@ -80,7 +80,7 @@ uint32_t Problem12()
         register uint32_t j = GetFactorSum(i * (i + 1) / 2);
         if (j >= 500)
         {
-            return (i * ( i + 1 ) / 2);
+            return (i * (i + 1) / 2);
         }
     }
     return 0;
